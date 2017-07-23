@@ -2,6 +2,7 @@ package rmutsv.alisa.yusuf.mynavigater;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -16,6 +17,7 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     private String idString, nameString, dateString, distanceString, latString, lngString;
     private TextView nameTextView, dateTextView, distanceTextView;
+    private String[] latStrings, lngStrings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,25 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
         //Show Text
         showText();
 
+        //Create Array
+        createArray();
+
 
         // Create Maps Fragment
         createMapsFragment();
 
     }   // Main Method
+
+    private void createArray() {
+
+        latStrings = latString.split(",");
+        lngStrings = lngString.split(",");
+
+        Log.d("23JulyV4", "lat.length ==> " + latStrings.length);
+        Log.d("23JulyV4", "lng.length ==> " + lngStrings.length);
+
+
+    }
 
     private void showText() {
         nameTextView = (TextView) findViewById(R.id.txtShowName);
