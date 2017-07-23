@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         //ToDo
         Log.d("23JulyV3", "ActivityResult Work");
+        createListView();
 
     }
 
