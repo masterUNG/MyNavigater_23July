@@ -1,6 +1,7 @@
 package rmutsv.alisa.yusuf.mynavigater;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -107,6 +108,10 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
                     MyManage myManage = new MyManage(AddMapsActivity.this);
                     myManage.addValuToSQLite(nameMapString, dateString, distanceString,
                             latString, lngString);
+
+                    Intent intent = new Intent(AddMapsActivity.this, MainActivity.class);
+                    setResult(100, intent);
+                    finish();
 
                 }
 
