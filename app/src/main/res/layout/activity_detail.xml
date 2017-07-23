@@ -81,6 +81,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtShowName"
                 android:textSize="@dimen/h2"
                 android:textColor="@color/colorPrimaryDark"
                 android:text="testName"

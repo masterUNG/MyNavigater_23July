@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -42,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM navigateTABLE", null);
             cursor.moveToFirst();
 
-            String[] idStrings = new String[cursor.getCount()];
-            String[] nameStrings = new String[cursor.getCount()];
-            String[] dateStrings = new String[cursor.getCount()];
-            String[] distanceStrings = new String[cursor.getCount()];
-            String[] latStrings = new String[cursor.getCount()];
-            String[] lngStrings = new String[cursor.getCount()];
+            final String[] idStrings = new String[cursor.getCount()];
+            final String[] nameStrings = new String[cursor.getCount()];
+            final String[] dateStrings = new String[cursor.getCount()];
+            final String[] distanceStrings = new String[cursor.getCount()];
+            final String[] latStrings = new String[cursor.getCount()];
+            final String[] lngStrings = new String[cursor.getCount()];
 
             for (int i = 0; i < cursor.getCount(); i += 1) {
 
@@ -68,6 +69,23 @@ public class MainActivity extends AppCompatActivity {
             MyAdapter myAdapter = new MyAdapter(MainActivity.this,
                     nameStrings, dateStrings, distanceStrings);
             listView.setAdapter(myAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                    intent.putExtra("id", idStrings[i]);
+                    intent.putExtra("Name", nameStrings[i]);
+                    intent.putExtra("Date", dateStrings[i]);
+                    intent.putExtra("Distance", distanceStrings[i]);
+                    intent.putExtra("Lat", latStrings[i]);
+                    intent.putExtra("Lng", lngStrings[i]);
+                    startActivity(intent);
+
+
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
