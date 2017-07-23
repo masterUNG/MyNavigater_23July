@@ -8,10 +8,16 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MyManage myManage;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Create SQLite
+        createSQLite();
 
         // Add Maps Controller
         addMapsController();
@@ -21,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     } // main method
+
+    private void createSQLite() {
+        myManage = new MyManage(MainActivity.this);
+    }
 
     private void addMapsController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvAddMaps);

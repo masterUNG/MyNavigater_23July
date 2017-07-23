@@ -83,11 +83,6 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
                 EditText editText = (EditText) findViewById(R.id.edtName);
                 nameMapString = editText.getText().toString().trim();
 
-                if (nameMapString.length() == 0) {
-                    Toast.makeText(AddMapsActivity.this,
-                            "Please Fill Name", Toast.LENGTH_SHORT).show();
-                }
-
                 //Find Distanct String
                 distanceString = Double.toString(distanceADouble);
 
@@ -102,6 +97,20 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
                 Log.d(tag, "Distance ==> " + distanceString);
                 Log.d(tag, "latString ==> " + latString);
                 Log.d(tag, "lngString ==> " + lngString);
+
+
+                if (nameMapString.length() == 0) {
+                    Toast.makeText(AddMapsActivity.this,
+                            "Please Fill Name", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    MyManage myManage = new MyManage(AddMapsActivity.this);
+                    myManage.addValuToSQLite(nameMapString, dateString, distanceString,
+                            latString, lngString);
+
+                }
+
+
 
             }
         });
