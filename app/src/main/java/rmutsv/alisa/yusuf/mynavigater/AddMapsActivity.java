@@ -76,8 +76,21 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
         //Show Name Map
         showNameMap();
 
+        //Back Controller
+        backController();
+
 
     }   // Main Method
+
+    private void backController() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvBack);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
 
     private void showNameMap() {
         try {
