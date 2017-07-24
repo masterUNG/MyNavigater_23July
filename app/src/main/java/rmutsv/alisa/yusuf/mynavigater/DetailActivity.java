@@ -50,10 +50,21 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
         //Delete Controller
         deleteController();
 
-
+        //Edit Controller
+        editController();
 
 
     }   // Main Method
+
+    private void editController() {
+        ImageView imageView = (ImageView) findViewById(R.id.imvEdit);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteSQLite(idString, false);
+            }
+        });
+    }
 
     private void deleteController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvDelete);
@@ -81,7 +92,10 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
             finish();
         } else {
             //Delete and Add New Map
-
+            Intent intent = new Intent(DetailActivity.this, AddMapsActivity.class);
+            intent.putExtra("NameMap", nameString);
+            startActivityForResult(intent, 100);
+            finish();
         }
 
     }

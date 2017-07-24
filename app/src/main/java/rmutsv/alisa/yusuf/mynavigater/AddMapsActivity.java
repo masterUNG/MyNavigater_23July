@@ -44,6 +44,7 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
     private ArrayList<String> latStringArrayList;
     private ArrayList<String> lngStringArrayList;
     private String nameMapString, dateString, distanceString, latString, lngString;
+    private EditText editText;
 
 
     @Override
@@ -72,8 +73,24 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
         //Save Controller
         saveController();
 
+        //Show Name Map
+        showNameMap();
+
 
     }   // Main Method
+
+    private void showNameMap() {
+        try {
+
+            String strNameMap = getIntent().getStringExtra("NameMap");
+            Log.d("24JulyV1", "strNameMap ==> " + strNameMap);
+            EditText editText = (EditText) findViewById(R.id.edtName);
+            editText.setText(strNameMap);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private void saveController() {
         ImageView imageView = (ImageView) findViewById(R.id.imvSave);
@@ -81,7 +98,7 @@ public class AddMapsActivity extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onClick(View view) {
 
-                EditText editText = (EditText) findViewById(R.id.edtName);
+                editText = (EditText) findViewById(R.id.edtName);
                 nameMapString = editText.getText().toString().trim();
 
                 //Find Distanct String
