@@ -51,6 +51,8 @@ public class DetailActivity extends FragmentActivity implements OnMapReadyCallba
         deleteController();
 
 
+
+
     }   // Main Method
 
     private void deleteController() {
